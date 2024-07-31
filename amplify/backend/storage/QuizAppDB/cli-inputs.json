@@ -1,0 +1,14 @@
+{
+  "resourceName": "QuizAppDB",
+  "tableName": "QuizAppDB",
+  "partitionKey": {
+    "fieldName": "quizAttempt",
+    "fieldType": "number"
+  },
+  "sortKey": {
+    "fieldName": "user",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

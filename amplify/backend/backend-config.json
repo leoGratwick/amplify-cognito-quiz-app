@@ -1,4 +1,20 @@
 {
+  "api": {
+    "quizAPI": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "quizScoreFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "quizapp5ea9e562": {
       "customAuth": false,
@@ -25,6 +41,51 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "quizScoreFunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "QuizAppDB"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_quizScoreFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "quizScoreFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_quizScoreFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "quizScoreFunction"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "QuizAppDB": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     }
   }
 }
