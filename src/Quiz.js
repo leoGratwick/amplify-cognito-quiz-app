@@ -28,16 +28,31 @@ function Quiz() {
         setSelectedAnswer(""); // Reset selected answer
       } else {
         setShowScore(true);
+        // put score in DB here
       }
     }, 1500); // Adjust time as needed
   };
 
+  const restartQuiz = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setShowScore(false);
+    setSelectedAnswer(""); 
+    setIsCorrect(null);
+  }
+
   return (
     <div className='quiz'>
       {showScore ? (
+        <div>
         <div className='score-section'>
           You scored {score} out of {quizData.length}
+          
         </div>
+        <button onClick={() => restartQuiz()}>
+        Retake Quiz
+      </button>
+      </div>
       ) : (
         <>
           <div className='question-section'>
