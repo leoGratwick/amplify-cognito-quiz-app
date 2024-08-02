@@ -23,6 +23,7 @@ import Quiz from './Quiz';
 Amplify.configure(awsExports);
 
 function App() {
+
   return (
     <div className="App">
       <Authenticator>
