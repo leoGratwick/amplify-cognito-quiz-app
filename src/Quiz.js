@@ -50,7 +50,7 @@ function Quiz() {
           body: {
             quizAttempt: rand,
             user: email,
-            score: score
+            score: score + 1
           }
         }
       });
@@ -89,6 +89,7 @@ function Quiz() {
       } else {
         setShowScore(true);
         // put score in DB here
+        postTodo();
       }
     }, 1000); // Adjust time as needed
   };
@@ -109,12 +110,6 @@ function Quiz() {
           You scored {score} out of {quizData.length}
           
         </div>
-        <button onClick={() => getTodo()}>
-        API Get request test
-      </button>
-      <button onClick={() => postTodo()}>
-        API Post request test
-      </button>
         <button onClick={() => restartQuiz()}>
         Retake Quiz
       </button>
