@@ -8,9 +8,10 @@ import {fetchUserAttributes} from '@aws-amplify/auth';
 function Quiz() {
   async function getEmail() {
     const attributes = await fetchUserAttributes();
-    console.log(attributes);
-    return attributes.email
+    // console.log(attributes.email);
+    return attributes.email;
   }
+  
 
   
   
@@ -38,15 +39,17 @@ function Quiz() {
 
   
 
-  async function postTodo(score) {
+  async function postTodo() {
     try {
+      const rand = Math.floor(Math. random() * (9999999999 - 1000000000 + 1)) + 1000000000;
+      const email = await getEmail()
       const restOperation = post({
         apiName: 'quizAPI',
         path: '/score',
         options: {
           body: {
-            quizAttempt: 2,
-            user: 'testUser',
+            quizAttempt: rand,
+            user: email,
             score: score
           }
         }
@@ -106,6 +109,12 @@ function Quiz() {
           You scored {score} out of {quizData.length}
           
         </div>
+        <button onClick={() => getTodo()}>
+        API Get request test
+      </button>
+      <button onClick={() => postTodo()}>
+        API Post request test
+      </button>
         <button onClick={() => restartQuiz()}>
         Retake Quiz
       </button>
@@ -114,12 +123,6 @@ function Quiz() {
       ) : (
         <>
           <div className='question-section'>
-          <button onClick={() => getTodo()}>
-        API Get request test
-      </button>
-      <button onClick={() => postTodo(score)}>
-        API Post request test
-      </button>
             <div className='question-count'>
               <span>Question {currentQuestion + 1}</span>/{quizData.length}
             </div>
