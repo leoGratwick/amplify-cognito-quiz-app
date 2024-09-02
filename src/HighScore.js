@@ -1,12 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { HomeButton } from './components/HomeButton';
+import { get } from 'aws-amplify/api';
 
 const HighScore = () => {
+
+  // get request to API
+  async function getTodo() {
+    try {
+      const restOperation = get({ 
+        apiName: 'quizAPI',
+        path: '/score' 
+      });
+      const response = await restOperation.response;
+      console.log('GET call succeeded: ', response);
+    } catch (e) {
+      console.log('GET call failed: ', JSON.parse(e.response.body));
+    }
+  }
+
   return (
     <div>
-      <h1>High Scores</h1>
+      <h1>High Score</h1>
       <p>High scores will be displayed here.</p>
-      <Link to='/'>Back Home</Link>
+      <HomeButton/>
     </div>
   );
 };

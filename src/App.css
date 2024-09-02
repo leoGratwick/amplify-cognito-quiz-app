@@ -40,3 +40,24 @@
 button:hover {
   background-color: rgb(200, 200, 200);
 }
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  padding: 50px;
+  white-space: nowrap
+}
+
+.quiz > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}

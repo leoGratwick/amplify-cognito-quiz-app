@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import quizData from './quizData';
-import { get } from 'aws-amplify/api';
 import { post } from 'aws-amplify/api';
 import {fetchUserAttributes} from '@aws-amplify/auth';
-import { Link } from 'react-router-dom';
+import { HomeButton } from './components/HomeButton';
 
 
 function Quiz() {
@@ -23,22 +22,6 @@ function Quiz() {
   const [selectedAnswer, setSelectedAnswer] = useState(""); 
   const [isCorrect, setIsCorrect] = useState(null);
 
-  
-
-  async function getTodo() {
-    try {
-      const restOperation = get({ 
-        apiName: 'quizAPI',
-        path: '/score' 
-      });
-      const response = await restOperation.response;
-      console.log('GET call succeeded: ', response);
-    } catch (e) {
-      console.log('GET call failed: ', JSON.parse(e.response.body));
-    }
-  }
-
-  
 
   async function postTodo() {
     try {
@@ -149,7 +132,7 @@ function Quiz() {
           )}
         </>
       )}
-      <Link to='/'>Back Home</Link>
+      <HomeButton/>
     </div>
   );
 }
