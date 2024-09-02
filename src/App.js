@@ -17,6 +17,8 @@ import awsExports from './aws-exports';
 
 // Imports the Quiz component from Quiz.js for use in this file.
 import Quiz from './Quiz';
+import Home from './Home';
+import HighScore from './HighScore';
 
 
 // Configures the Amplify library with the settings from aws-exports.js, which includes all the AWS service configurations for this project.
@@ -31,7 +33,7 @@ function App() {
           <main>
             <header className='App-header'>
               {/* Quiz Component */}
-              <Quiz />
+              <Home />
               {/* Sign Out Button */}
               <button 
                 onClick={signOut} 

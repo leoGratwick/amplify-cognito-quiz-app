@@ -3,6 +3,7 @@ import quizData from './quizData';
 import { get } from 'aws-amplify/api';
 import { post } from 'aws-amplify/api';
 import {fetchUserAttributes} from '@aws-amplify/auth';
+import { Link } from 'react-router-dom';
 
 
 function Quiz() {
@@ -114,6 +115,7 @@ function Quiz() {
         Retake Quiz
       </button>
       
+      
       </div>
       ) : (
         <>
@@ -147,6 +149,7 @@ function Quiz() {
           )}
         </>
       )}
+      <Link to='/'>Back Home</Link>
     </div>
   );
 }
