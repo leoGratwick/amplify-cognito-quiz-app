@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import quizData from './quizData';
 import { post } from 'aws-amplify/api';
 import {fetchUserAttributes} from '@aws-amplify/auth';
 import { HomeButton } from './components/HomeButton';
+import { isAuthenticated } from '.';
+import { UnAuthenticated } from './components/UnAuthenticated';
 
 
 function Quiz() {
@@ -86,7 +88,20 @@ function Quiz() {
     setIsCorrect(null);
   }
 
-  return (
+  // Authentication
+  const [authenticated, setAuthenticated] = useState(null);
+
+  useEffect(() => {
+    async function checkAuthentication() {
+      const result = await isAuthenticated();
+      setAuthenticated(result);
+    }
+
+    checkAuthentication();
+  }, []);
+
+  if (authenticated === null) return <div className='centred'>Loading...</div>;
+  if (authenticated) return (
     <div className='quiz'>
       {showScore ? (
         <div className='score-section'>
@@ -135,6 +150,13 @@ function Quiz() {
       <HomeButton/>
     </div>
   );
-}
+
+  return <UnAuthenticated/>;
+
+  
+};
+
+
+  
 
 export default Quiz;

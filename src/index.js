@@ -6,7 +6,28 @@ import HighScore from './HighScore';
 import Quiz from './Quiz';
 import NotFoundPage from './NotFoundPage';
 import reportWebVitals from './reportWebVitals';
+import {fetchUserAttributes} from '@aws-amplify/auth';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { HomeButton } from './components/HomeButton';
+
+
+var isAuth = false
+
+export async function isAuthenticated() {
+  var signedIn = false;
+  try {
+    const attributes = await fetchUserAttributes();
+    console.log("user signed in")
+    signedIn = true;
+  } catch (error){
+    console.log("user not signed in")
+  }
+  
+  return signedIn;
+}
+
+isAuth = isAuthenticated();
+
 
 const router = createBrowserRouter([
   {
@@ -21,7 +42,9 @@ const router = createBrowserRouter([
   },
   {
     path: '/highscore',
-    element: <HighScore/>,
+    element:
+        <HighScore/>
+          ,
   }
   
 

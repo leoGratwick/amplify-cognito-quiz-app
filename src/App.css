@@ -50,7 +50,7 @@ button:hover {
   white-space: nowrap
 }
 
-.quiz > div {
+.quiz > div, .notAuth {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,4 +60,12 @@ button:hover {
 a {
   color: black;
   text-decoration: none;
+}
+
+.centred {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  margin: 100px;
 }
