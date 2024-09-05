@@ -3,21 +3,14 @@ import quizData from './quizData';
 import { post } from 'aws-amplify/api';
 import {fetchUserAttributes} from '@aws-amplify/auth';
 import { HomeButton } from './components/HomeButton';
-import { isAuthenticated } from '.';
+import { isAuthenticated, getEmail } from '.';
 import { UnAuthenticated } from './components/UnAuthenticated';
 
 
+
 function Quiz() {
-  async function getEmail() {
-    const attributes = await fetchUserAttributes();
-    // console.log(attributes.email);
-    return attributes.email;
-  }
-  
-
   
   
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);

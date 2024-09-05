@@ -26,6 +26,12 @@ export async function isAuthenticated() {
   return signedIn;
 }
 
+export async function getEmail() {
+  const attributes = await fetchUserAttributes();
+  // console.log(attributes.email);
+  return attributes.email;
+}
+
 isAuth = isAuthenticated();
 
 
