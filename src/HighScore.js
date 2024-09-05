@@ -7,15 +7,20 @@ import { UnAuthenticated } from './components/UnAuthenticated';
 
 const HighScore = () => {
 
+  
+
   // get request to API
-  async function getTodo(email) {
+  async function getTodo() {
     try {
       const restOperation = get({ 
         apiName: 'quizAPI',
-        path: '/score' 
+        path: '/score',
+        
       });
       const response = await restOperation.response;
-      console.log('GET call succeeded: ', response);
+      console.log('GET call from HighScore succeeded: ', response);
+      // console.log('response body: ', response.body.json());
+      return response.body.json()
     } catch (e) {
       console.log('GET call failed: ', JSON.parse(e.response.body));
     }
@@ -36,12 +41,17 @@ const HighScore = () => {
 
 
   // get highscore from database using api request
-  const [highscore, setHighscore] = useState(0)
+  const [highscore, setHighscore] = useState(null)
   useEffect(() => {
     
     async function getHighscore() {
       const email = await getEmail();
-      const hs = await getTodo(email);
+      const data = await getTodo();
+      const userScores = data.filter(item => item.user === email);
+      const hs = userScores.reduce((max, item) => 
+        item.score > max ? item.score : max, 0 // Initial max is 0
+      );
+      console.log(userScores)
       console.log(hs)
       setHighscore(hs);
     }
@@ -52,10 +62,9 @@ const HighScore = () => {
   if (authenticated === null) return <div className='centred'>Loading...</div>;
   if (authenticated) return (
      
-      <div>
-      <h1>High Score</h1>
-      <p>High scores will be displayed here.</p>
-      <div>{highscore}</div>
+      <div className='centred'>
+      <h1>High Score:</h1>
+      <h1 className='highscore'>{highscore}</h1>
       <HomeButton/>
     </div>
   );

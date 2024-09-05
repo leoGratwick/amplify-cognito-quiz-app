@@ -24,6 +24,8 @@ import HighScore from './HighScore';
 // Configures the Amplify library with the settings from aws-exports.js, which includes all the AWS service configurations for this project.
 Amplify.configure(awsExports);
 
+
+
 function App() {
 
   return (

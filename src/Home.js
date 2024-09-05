@@ -11,7 +11,7 @@ const Home = () => {
           <Link to='/quiz'>Start Quiz</Link>
         </button>
         <button>
-          <Link to='/highscore'>View High Scores</Link>
+          <Link to='/highscore'>View Your High Score</Link>
         </button>
       </div>
     );

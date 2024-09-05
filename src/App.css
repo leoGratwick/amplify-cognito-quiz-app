@@ -69,3 +69,8 @@ a {
   align-items: center; 
   margin: 100px;
 }
+
+.highscore {
+  font-size: xx-large;
+  color: green;
+}

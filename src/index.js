@@ -32,6 +32,10 @@ export async function getEmail() {
   return attributes.email;
 }
 
+
+
+
+
 isAuth = isAuthenticated();
 
 
