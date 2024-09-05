@@ -42,8 +42,9 @@ function App() {
                 style={{ 
                   margin: '20px', 
                   fontSize: '0.8rem', 
+                  fontWeight: 'bold',
                   padding: '5px 10px', 
-                  marginTop: '20px'
+                  marginTop: '20px',
                 }}
               >
                 Sign Out
