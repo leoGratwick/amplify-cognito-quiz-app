@@ -8,11 +8,9 @@ import NotFoundPage from './NotFoundPage';
 import reportWebVitals from './reportWebVitals';
 import {fetchUserAttributes} from '@aws-amplify/auth';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HomeButton } from './components/HomeButton';
 
 
-var isAuth = false
-
+// checks if user is signed in
 export async function isAuthenticated() {
   var signedIn = false;
   try {
@@ -26,19 +24,16 @@ export async function isAuthenticated() {
   return signedIn;
 }
 
+
 export async function getEmail() {
   const attributes = await fetchUserAttributes();
-  // console.log(attributes.email);
   return attributes.email;
 }
 
 
 
 
-
-isAuth = isAuthenticated();
-
-
+// page router
 const router = createBrowserRouter([
   {
     path: '/',

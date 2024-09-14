@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import quizData from './quizData';
 import { post } from 'aws-amplify/api';
-import {fetchUserAttributes} from '@aws-amplify/auth';
 import { HomeButton } from './components/HomeButton';
 import { isAuthenticated, getEmail } from '.';
 import { UnAuthenticated } from './components/UnAuthenticated';
@@ -18,6 +17,7 @@ function Quiz() {
   const [isCorrect, setIsCorrect] = useState(null);
 
 
+  // put score in database 
   async function postTodo() {
     try {
       const rand = Math.floor(Math. random() * (9999999999 - 1000000000 + 1)) + 1000000000;
@@ -47,7 +47,6 @@ function Quiz() {
   }
 
   
-  
   const handleAnswerOptionClick = (option) => {
     const correctAnswer = quizData[currentQuestion].answer;
     setSelectedAnswer(option);
@@ -67,10 +66,10 @@ function Quiz() {
         setSelectedAnswer(""); // Reset selected answer
       } else {
         setShowScore(true);
-        // put score in DB here
+        // put score in DB
         postTodo();
       }
-    }, 1000); // Adjust time as needed
+    }, 1000);
   };
 
   const restartQuiz = () => {
