@@ -68,6 +68,9 @@ function Quiz() {
         setShowScore(true);
         // put score in DB
         postTodo();
+        if (score > localStorage.getItem('highscore')){
+          localStorage.setItem('highscore', score)
+        }
       }
     }, 1000);
   };

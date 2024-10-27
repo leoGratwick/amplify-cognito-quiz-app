@@ -7,7 +7,14 @@ import { UnAuthenticated } from './components/UnAuthenticated';
 
 const HighScore = () => {
 
-  
+  const [hs, setHs] = useState('');
+  useEffect(() => {
+    // Retrieve data from localStorage
+    const storedHs = localStorage.getItem('highscore');
+    if (storedHs) {
+      setHs(storedHs); // Update state with the retrieved data
+    }
+  }, []);
 
   // get request to API
   async function getTodo() {
@@ -41,7 +48,7 @@ const HighScore = () => {
 
 
   // get highscore from database using api request
-  const [highscore, setHighscore] = useState(null)
+  
   useEffect(() => {
     
     async function getHighscore() {
@@ -53,18 +60,19 @@ const HighScore = () => {
       );
       console.log(userScores)
       console.log(hs)
-      setHighscore(hs);
+      localStorage.setItem('highscore', hs);
     }
 
     getHighscore();
   }, [])
+
 
   if (authenticated === null) return <div className='centred'>Loading...</div>;
   if (authenticated) return (
      
       <div className='centred'>
       <h1>High Score:</h1>
-      <h1 className='highscore'>{highscore}</h1>
+      <h1 className='highscore'>{hs ? hs : 'No data found.'}</h1>
       <HomeButton/>
     </div>
   );
